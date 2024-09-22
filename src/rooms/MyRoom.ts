@@ -3,17 +3,21 @@ import {
   addClient,
   deleteClient,
   getClientById,
-  getClients
+  getClients,
+  updateClient
 } from '../services/clientService'
 import { Client } from '../types/clientType'
 
 export default class MyRoom extends Room {
   onCreate (): void {
     console.log('Room created!')
+    this.onMessage('move', (client, data) => {
+      this.updateClientPosition(client.sessionId, data)
+    })
   }
 
   onJoin (client: any): void {
-    console.log('Client joined!')
+    console.log('Client joined!', client)
     const newClient: Client = {
       id: client.sessionId,
       position: {
@@ -22,21 +26,29 @@ export default class MyRoom extends Room {
         z: Math.random() * 10
       }
     }
-    addClient(newClient)
 
-    console.log('Clientes', getClients())
+    client.send('init_MyPlayer', newClient)
 
     client.send('init_players', getClients())
+    addClient(newClient)
+    console.log('Clientes', getClients())
 
-    this.broadcast('player_update', getClientById(newClient.id))
+    this.broadcast('player_update', newClient)
+  }
+
+  private updateClientPosition (clientId: string, position: any): void {
+    const client = getClientById(clientId)
+    if (client != null) {
+      updateClient(clientId, position)
+
+      console.log('Client position updated!', client)
+      this.broadcast('player_update', getClientById(clientId))
+    }
   }
 
   onLeave (client: any): void {
     console.log('Client left!', client.sessionId)
     deleteClient(client.sessionId)
-    // delete this.players[client.sessionId]
-    // // Notificar a los demás que el jugador se ha desconectado
-    // this.broadcast('player_left', { id: client.sessionId })
   }
 
   onDispose (): void {

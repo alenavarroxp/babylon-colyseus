@@ -14,6 +14,13 @@ export const addClient = (newClient: Client): void => {
   clients.push(newClient)
 }
 
+export const updateClient = (clientId: string, updatedClient: Partial<Client>): void => {
+  const client = clients.find((client) => client.id === clientId)
+  if (client != null) {
+    Object.assign(client, updatedClient)
+  }
+}
+
 export const deleteClient = (clientId: string): void => {
   const client = clients.find((client) => client.id === clientId)
   if (client != null) {
