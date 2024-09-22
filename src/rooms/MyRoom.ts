@@ -48,6 +48,7 @@ export default class MyRoom extends Room {
 
   onLeave (client: any): void {
     console.log('Client left!', client.sessionId)
+    this.broadcast('player_left', { id: client.sessionId })
     deleteClient(client.sessionId)
   }
 

@@ -1,4 +1,5 @@
 import * as BABYLON from 'babylonjs'
+import { clientID } from '../network/roomHandler'
 import { getPlayers } from './createPlayer'
 
 const movement = {
@@ -9,9 +10,6 @@ const movement = {
   up: false,
   down: false
 }
-
-const previousPosition = new BABYLON.Vector3(0, 0, 0)
-const myID: string = ''
 
 export function handleMovement (room: any): void {
   window.addEventListener('keydown', (event) => {
@@ -36,45 +34,27 @@ export function handleMovement (room: any): void {
     }
   })
 
-  const players = getPlayers()
-
   // Actualiza el movimiento del jugador
-  function updatePlayerMovement (room: any): void {
-    if (myID !== '' || !(myID in players)) return
-
-    const player = players[myID]
-
-    const velocity = new BABYLON.Vector3()
-    if (movement.forward) velocity.z += 0.1
-    if (movement.backward) velocity.z -= 0.1
-    if (movement.left) velocity.x -= 0.1
-    if (movement.right) velocity.x += 0.1
-    if (movement.up) velocity.y += 0.1
-    if (movement.down) velocity.y -= 0.1
-
-    player.position.addInPlace(velocity)
-
-    if (hasPositionChanged(player.position, previousPosition)) {
-      room.send('move', { position: player.position })
-      previousPosition.copyFrom(player.position)
-    }
-  }
-
   setInterval(() => updatePlayerMovement(room), 16) // Aproximadamente 60 FPS
 }
 
-function hasPositionChanged (currentPosition: BABYLON.Vector3, previousPosition: BABYLON.Vector3): boolean {
-  const threshold = 0.05
-  return Math.abs(currentPosition.x - previousPosition.x) > threshold ||
-         Math.abs(currentPosition.y - previousPosition.y) > threshold ||
-         Math.abs(currentPosition.z - previousPosition.z) > threshold
+function updatePlayerMovement (room: any): void {
+  const players = getPlayers()
+  const player = players[clientID]
+
+  const velocity = new BABYLON.Vector3(
+    (movement.right ? 1 : 0) - (movement.left ? 1 : 0),
+    (movement.up ? 1 : 0) - (movement.down ? 1 : 0),
+    (movement.backward ? 1 : 0) - (movement.forward ? 1 : 0)
+  )
+
+  player.position.addInPlace(velocity.scale(0.1))
+
+  if (velocity.length() > 0) {
+    room.send('move', { id: clientID, position: player.position })
+  }
 }
 
 export function updatePlayerPosition (id: string, position: BABYLON.Vector3): void {
-  const players = getPlayers()
-  const player = players[id]
-
-  if (player !== undefined) {
-    player.position = position // Actualiza la posición del jugador
-  }
+  console.log('Updating player position:', id, position)
 }

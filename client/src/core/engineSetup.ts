@@ -1,14 +1,24 @@
 import * as BABYLON from 'babylonjs'
 
+let engine: BABYLON.Engine
+let scene: BABYLON.Scene
+
 export function setupEngine (canvasId: string): { engine: BABYLON.Engine, scene: BABYLON.Scene } {
   const canvas = document.getElementById(canvasId) as HTMLCanvasElement
-  const engine = new BABYLON.Engine(canvas, true)
-  const scene = new BABYLON.Scene(engine)
+  engine = new BABYLON.Engine(canvas, true)
+  scene = new BABYLON.Scene(engine)
 
-  // Ajustar el tamaño del canvas cuando la ventana cambia de tamaño
   window.addEventListener('resize', () => {
     engine.resize()
   })
 
   return { engine, scene }
+}
+
+export function getScene (): BABYLON.Scene {
+  return scene
+}
+
+export function getEngine (): BABYLON.Engine {
+  return engine
 }
