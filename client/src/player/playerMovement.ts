@@ -1,4 +1,4 @@
-import * as BABYLON from 'babylonjs'
+import * as BABYLON from '@babylonjs/core'
 import { getCamera } from '../core/sceneSetup'
 import { clientID } from '../network/roomHandler'
 import { getPlayers } from './createPlayer'
@@ -64,9 +64,10 @@ export function changeCameraTarget (position: BABYLON.Vector3): void {
   camera.setTarget(position)
 }
 
-function updateCameraPosition (position: BABYLON.Vector3): void {
+export function updateCameraPosition (position: BABYLON.Vector3): void {
   const camera = getCamera()
-  camera.position = position.add(new BABYLON.Vector3(0, 10, -10))
+  const targetPosition = position.add(new BABYLON.Vector3(0, 10, -10))
+  BABYLON.Vector3.LerpToRef(camera.position, targetPosition, 0.1, camera.position)
 }
 
 export function updatePlayerPosition (id: string, position: BABYLON.Vector3): void {

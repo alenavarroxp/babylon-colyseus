@@ -1,5 +1,7 @@
-import * as BABYLON from 'babylonjs'
+import * as BABYLON from '@babylonjs/core'
 import { getScene } from '../core/engineSetup'
+import { createTargetGUI, removeTargetGUI } from '../gui/guiSetup'
+import { clientID } from '../network/roomHandler'
 
 const players: Record<string, BABYLON.Mesh> = {}
 
@@ -15,6 +17,8 @@ export function createPlayer (
 
   players[id] = playerCube
 
+  createTargetGUI(playerCube, clientID == id ? id+ ' (You)' : id)
+
   return playerCube
 }
 
@@ -27,6 +31,7 @@ export function removePlayer (id: string): void {
     console.log('Player removed:', id)
 
     players[id].dispose()
+    removeTargetGUI(players[id])
     delete players[id]
   }
 }
