@@ -57,4 +57,10 @@ function updatePlayerMovement (room: any): void {
 
 export function updatePlayerPosition (id: string, position: BABYLON.Vector3): void {
   console.log('Updating player position:', id, position)
+  const players = getPlayers()
+  const player = players[id]
+
+  if (player !== undefined) {
+    player.position = position
+  }
 }

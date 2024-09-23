@@ -17,7 +17,7 @@ export default class MyRoom extends Room {
   }
 
   onJoin (client: any): void {
-    console.log('Client joined!', client)
+    console.log('Client joined!', client.id)
     const newClient: Client = {
       id: client.sessionId,
       position: {
@@ -34,6 +34,7 @@ export default class MyRoom extends Room {
     console.log('Clientes', getClients())
 
     this.broadcast('player_update', newClient)
+    this.broadcast('player_joined', newClient)
   }
 
   private updateClientPosition (clientId: string, position: any): void {
