@@ -32,3 +32,68 @@ El proyecto está dividido en dos componentes principales: **cliente** y **servi
     └── types/             # Tipos y definiciones para TypeScript
 ```
 
+## 🛠️ Instalación y Uso
+
+### Prerrequisitos
+
+Asegúrate de tener instalados los siguientes programas:
+
+- [Node.js](https://nodejs.org/) (>=14.0.0)
+- [npm](https://www.npmjs.com/) o [yarn](https://yarnpkg.com/)
+
+### Instalación
+
+1. Clona el repositorio:
+
+    ```bash
+    git clone https://github.com/alenavarroxp/babylon-colyseus.git
+    cd babylon-colyseus
+    ```
+
+2. Instala las dependencias del servidor y del cliente:
+
+    ```bash
+    # Instalar dependencias del servidor desde directorio padre
+    cd server
+    npm install
+    # o yarn install
+
+    # Instalar dependencias del cliente desde directorio padre
+    cd client
+    npm install
+    # o yarn install
+    ```
+
+### Uso
+
+1. Inicia el servidor en una terminal:
+
+    ```bash
+    npm run server
+    # o yarn server
+    ```
+
+2. Inicia el cliente en otra terminal:
+
+    ```bash
+    npm run client
+    # o yarn client
+    ```
+
+3. Abre tu navegador y navega a `http://localhost:3000/colyseus` para ver la consola de colyseus.
+4. Abre una nueva pestaña y navega a `http://localhost:5173` para acceder al sistema como cliente.
+
+## 🤝 Contribuciones
+
+¡Las contribuciones son bienvenidas! Si deseas contribuir, por favor sigue los siguientes pasos:
+
+1. Haz un fork del proyecto.
+2. Crea una nueva rama (`git checkout -b feature/nueva-funcionalidad`).
+3. Realiza tus cambios y haz commit (`git commit -am 'Añadir nueva funcionalidad'`).
+4. Sube tus cambios a tu fork (`git push origin feature/nueva-funcionalidad`).
+5. Abre un Pull Request.
+
+## 📜 Licencia
+
+Este proyecto está bajo la licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.
+
