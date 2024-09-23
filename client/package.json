@@ -15,5 +15,13 @@
   "dependencies": {
     "babylonjs": "^7.26.2",
     "colyseus.js": "^0.15.26"
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    },
+    "extends": [
+      "./node_modules/ts-standard/eslintrc.json"
+    ]
   }
 }
