@@ -1,4 +1,5 @@
 import * as BABYLON from 'babylonjs'
+import { getCamera } from '../core/sceneSetup'
 import { clientID } from '../network/roomHandler'
 import { getPlayers } from './createPlayer'
 
@@ -51,8 +52,21 @@ function updatePlayerMovement (room: any): void {
   player.position.addInPlace(velocity.scale(0.1))
 
   if (velocity.length() > 0) {
+    changeCameraTarget(player.position)
+    updateCameraPosition(player.position)
+    
     room.send('move', { id: clientID, position: player.position })
   }
+}
+
+export function changeCameraTarget (position: BABYLON.Vector3): void {
+  const camera = getCamera()
+  camera.setTarget(position)
+}
+
+function updateCameraPosition (position: BABYLON.Vector3): void {
+  const camera = getCamera()
+  camera.position = position.add(new BABYLON.Vector3(0, 10, -10))
 }
 
 export function updatePlayerPosition (id: string, position: BABYLON.Vector3): void {

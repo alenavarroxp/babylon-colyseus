@@ -31,7 +31,7 @@ export default class MyRoom extends Room {
 
     client.send('init_players', getClients())
     addClient(newClient)
-    console.log('Clientes', getClients())
+    console.log('Clients', getClients())
 
     this.broadcast('player_update', newClient)
     this.broadcast('player_joined', newClient)

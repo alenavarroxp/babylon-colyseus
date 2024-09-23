@@ -1,6 +1,6 @@
 import * as BABYLON from 'babylonjs'
 import { handleMovement } from '../player/playerMovement'
-import { setupEngine } from './engineSetup'
+import { getScene, setupEngine } from './engineSetup'
 
 export function initBabylonScene (room: any): void {
   const { engine, scene } = setupEngine('renderCanvas')
@@ -21,4 +21,9 @@ export function initBabylonScene (room: any): void {
   engine.runRenderLoop(() => {
     scene.render()
   })
+}
+
+export function getCamera (): BABYLON.FreeCamera {
+  const scene = getScene()
+  return scene.getCameraByName('camera1') as BABYLON.FreeCamera
 }

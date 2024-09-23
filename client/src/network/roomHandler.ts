@@ -1,5 +1,6 @@
+
 import { createPlayer, getPlayers, removePlayer } from "../player/createPlayer";
-import { updatePlayerPosition } from "../player/playerMovement";
+import { changeCameraTarget, updatePlayerPosition } from "../player/playerMovement";
 
 export let clientID: string;
 
@@ -7,8 +8,8 @@ export function setupRoomHandlers(room: any): void {
   room.onMessage("init_MyPlayer", (myClient: any) => {
     console.log("My client ID:", myClient.id);
     clientID = myClient.id;
-    const player = createPlayer(myClient.id, myClient.position);
-    console.log("Player:", player);
+    const myPlayer = createPlayer(myClient.id, myClient.position);
+    changeCameraTarget(myPlayer.position);
   });
 
   room.onMessage("init_players", (playersData: any) => {

@@ -25,10 +25,8 @@ export function getPlayers (): Record<string, BABYLON.Mesh> {
 export function removePlayer (id: string): void {
   if (players[id] !== null) {
     console.log('Player removed:', id)
-    console.log('Players antes:', players)
 
     players[id].dispose()
     delete players[id]
-    console.log('Players después:', players)
   }
 }
