@@ -27,9 +27,8 @@ export function removePlayer (id: string): void {
     console.log('Player removed:', id)
     console.log('Players antes:', players)
 
-    // Eliminar la entrada del objeto players
-    const { [id]: _, ...rest } = players // Destructuración para eliminar la propiedad
-    Object.assign(players, rest) // Actualiza players
+    players[id].dispose()
+    delete players[id]
     console.log('Players después:', players)
   }
 }

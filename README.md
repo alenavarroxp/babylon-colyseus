@@ -1,99 +1,99 @@
-# 🌐 Proyecto Cliente-Servidor en Tiempo Real con Node.js, Express, Babylon.js y Colyseus.js
+# 🌐 Client-Server Project in Real Time with Node.js, Express, Babylon.js y Colyseus.js
 
-Este proyecto implementa una arquitectura **cliente-servidor** que permite la comunicación en tiempo real, utilizando **Node.js** y **Express** en el lado del servidor, **Babylon.js** en el cliente para la representación 3D, y **Colyseus.js** para la sincronización de eventos multijugador.
+This project implements a **client-server** architecture that enables real-time communication, using **Node.js** and **Express** on the server side, **Babylon.js** on the client for 3D rendering, and **Colyseus.js** for multiplayer event synchronization.
 
-## 🚀 Tecnologías Utilizadas
+## 🚀 Technologies Used
 
-### Backend (Servidor) 🖥️
+### Backend (Server) 🖥️
 - **Node.js** ![Node.js version](https://img.shields.io/badge/Node.js-%3E%3D14.0.0-green)
 - **Express.js** ![Express.js version](https://img.shields.io/badge/Express.js-%5E4.17.1-blue)
 - **Colyseus** ![Colyseus version](https://img.shields.io/badge/Colyseus-0.15.17-yellow)
 
-### Frontend (Cliente) 🎮
+### Frontend (Client) 🎮
 - **Babylon.js** ![Babylon.js version](https://img.shields.io/badge/Babylon.js-7.26.2-orange)
 - **Colyseus.js** ![Colyseus.js version](https://img.shields.io/badge/Colyseus.js-0.15.26-yellow)
 
-## 📁 Estructura del Proyecto
+## 📁 Project Structure
 
-El proyecto está dividido en dos componentes principales: **cliente** y **servidor**. A continuación se detalla la estructura básica del proyecto:
+The project is divided into two main components: **client** and **server**. Below is the basic project structure:
 
 ```
-📦 Proyecto
-├── client/                # Código fuente del cliente (Vite + Babylon.js)
-│   ├── public/            # Archivos estáticos del cliente
-│   └── src/               # Código fuente del cliente
-│       ├── core/          # Configuración de la escena y motor gráfico
-│       ├── network/       # Comunicación en tiempo real con Colyseus.js
-│       └── player/        # Lógica relacionada con los jugadores
-└── server/                # Código fuente del servidor (Node.js + Colyseus)
-    ├── rooms/             # Lógica de las salas de Colyseus
-    ├── routes/            # Definición de rutas HTTP con Express
-    ├── services/          # Servicios auxiliares del servidor
-    └── types/             # Tipos y definiciones para TypeScript
+📦 Project
+├── client/                # Client source code (Vite + Babylon.js)
+│   ├── public/            # Client static files
+│   └── src/               # Client source code
+│       ├── core/          # Scene and graphics engine configuration
+│       ├── network/       # Real-time communication with Colyseus.js
+│       └── player/        # Player-related logic
+└── server/                # Server source code (Node.js + Colyseus)
+    ├── rooms/             # Colyseus room logic
+    ├── routes/            # HTTP route definitions with Express
+    ├── services/          # Server auxiliary services
+    └── types/             # Types and definitions for TypeScript
 ```
 
-## 🛠️ Instalación y Uso
+## 🛠️ Installation and Usage
 
-### Prerrequisitos
+### Prerequisites
 
-Asegúrate de tener instalados los siguientes programas:
+Make sure you have the following programs installed:
 
 - [Node.js](https://nodejs.org/) (>=14.0.0)
-- [npm](https://www.npmjs.com/) o [yarn](https://yarnpkg.com/)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
 
-### Instalación
+### Installation
 
-1. Clona el repositorio:
+1. Clone the repository:
 
     ```bash
     git clone https://github.com/alenavarroxp/babylon-colyseus.git
     cd babylon-colyseus
     ```
 
-2. Instala las dependencias del servidor y del cliente:
+2. Install server and client dependencies:
 
     ```bash
-    # Instalar dependencias del servidor desde directorio padre
+    # Install server dependencies from parent directory
     cd server
     npm install
-    # o yarn install
+    # or yarn install
 
-    # Instalar dependencias del cliente desde directorio padre
+    # Install client dependencies from parent directory
     cd client
     npm install
-    # o yarn install
+    # or yarn install
     ```
 
-### Uso
+### Usage
 
-1. Inicia el servidor en una terminal:
+1. Start the server in one terminal:
 
     ```bash
     npm run server
-    # o yarn server
+    # or yarn server
     ```
 
-2. Inicia el cliente en otra terminal:
+2. Start the client in another terminal:
 
     ```bash
     npm run client
-    # o yarn client
+    # or yarn client
     ```
 
-3. Abre tu navegador y navega a `http://localhost:3000/colyseus` para ver la consola de colyseus.
-4. Abre una nueva pestaña y navega a `http://localhost:5173` para acceder al sistema como cliente.
+3. Open your browser and navigate to `http://localhost:3000/colyseus` to see the Colyseus console.
+4. Open a new tab and navigate to `http://localhost:5173` to access the system as a client.
 
-## 🤝 Contribuciones
+## 🤝 Contributions
 
-¡Las contribuciones son bienvenidas! Si deseas contribuir, por favor sigue los siguientes pasos:
+Contributions are welcome! If you want to contribute, please follow these steps:
 
-1. Haz un fork del proyecto.
-2. Crea una nueva rama (`git checkout -b feature/nueva-funcionalidad`).
-3. Realiza tus cambios y haz commit (`git commit -am 'Añadir nueva funcionalidad'`).
-4. Sube tus cambios a tu fork (`git push origin feature/nueva-funcionalidad`).
-5. Abre un Pull Request.
+1. Fork the project.
+2. Create a new branch (`git checkout -b feature/new-feature`).
+3. Make your changes and commit them (`git commit -am 'Add new feature'`).
+4. Push your changes to your fork (`git push origin feature/new-feature`).
+5. Open a Pull Request.
 
-## 📜 Licencia
+## 📜 License
 
-Este proyecto está bajo la licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
